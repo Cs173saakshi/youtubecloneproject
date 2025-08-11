@@ -1,0 +1,52 @@
+/* Bootstrap is already imported in main.jsx; put small custom styles here */
+
+:root {
+  --accent: #ff2d55;
+  --muted: #6c757d;
+  --card-radius: 8px;
+  --transition: 180ms;
+}
+
+body {
+  background: #f7f7f8;
+  transition: background var(--transition), color var(--transition);
+}
+
+/* dark mode wrapper (applied by ThemeContext) */
+[data-theme='dark'] {
+  background: #0b1220;
+  color: #e6eef8;
+}
+
+.nav-hover:hover {
+  transform: translateY(-4px);
+  transition: transform var(--transition);
+}
+
+/* Video card */
+.video-thumb {
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  position: relative;
+}
+.duration-badge {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+/* subtle page transition */
+.fade-enter {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 220ms ease;
+}
