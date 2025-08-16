@@ -3,10 +3,6 @@ import React from "react";
 export default function VideoPlayer({ video }) {
   if (!video) return null;
 
-  // Extract YouTube video id from our mock video id (format: category-number)
-  // Here we just use the thumbnail video url's video id instead
-  // So let's extract video id from thumbnail URL for embed
-
   const urlParts = video.thumbnail.split("/vi/");
   let videoId = "";
   if (urlParts.length > 1) {
@@ -18,7 +14,7 @@ export default function VideoPlayer({ video }) {
       <div
         style={{
           position: "relative",
-          paddingBottom: "56.25%", // 16:9 aspect ratio
+          paddingBottom: "56.25%",
           height: 0,
           overflow: "hidden",
           borderRadius: 12,

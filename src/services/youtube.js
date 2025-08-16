@@ -1,4 +1,3 @@
-// src/data/youtube.js
 
 export const videoData = {
   Trending: [
