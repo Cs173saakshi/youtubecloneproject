@@ -3,13 +3,17 @@ import React, { useState } from "react";
 const dummyComments = [
   {
     id: 1,
-    user: "User1",
+    user: "Sachin",
     text: "Great video! Learned a lot.",
+    time: "2h ago",
+    avatar: "https://i.pravatar.cc/40?img=1",
   },
   {
     id: 2,
-    user: "User2",
+    user: "Ram",
     text: "Thanks for sharing!",
+    time: "1h ago",
+    avatar: "https://i.pravatar.cc/40?img=2",
   },
 ];
 
@@ -22,22 +26,28 @@ export default function Comments() {
     if (!newComment.trim()) return;
     setComments([
       ...comments,
-      { id: Date.now(), user: "You", text: newComment.trim() },
+      {
+        id: Date.now(),
+        user: "You",
+        text: newComment.trim(),
+        time: "Just now",
+        avatar: "https://i.pravatar.cc/40?img=5",
+      },
     ]);
     setNewComment("");
   };
 
   return (
     <section className="comments" aria-label="Video comments">
-      <h3>Comments</h3>
-      <form onSubmit={handleSubmit} aria-label="Add a comment">
+      <h3>Comments ({comments.length})</h3>
+
+      <form onSubmit={handleSubmit}>
         <textarea
           aria-label="Write a comment"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           rows="3"
           placeholder="Add a public comment..."
-          required
         />
         <button type="submit" disabled={!newComment.trim()}>
           Comment
@@ -45,9 +55,13 @@ export default function Comments() {
       </form>
 
       <ul>
-        {comments.map(({ id, user, text }) => (
+        {comments.map(({ id, user, text, time, avatar }) => (
           <li key={id}>
-            <strong>{user}</strong>: {text}
+            <img src={avatar} alt={user} />
+            <div className="comment-body">
+              <strong>{user}</strong> <span className="time">{time}</span>
+              <p>{text}</p>
+            </div>
           </li>
         ))}
       </ul>
@@ -59,7 +73,7 @@ export default function Comments() {
           font-family: Arial, sans-serif;
         }
         h3 {
-          margin-bottom: 12px;
+          margin-bottom: 16px;
         }
         form {
           margin-bottom: 20px;
@@ -68,19 +82,14 @@ export default function Comments() {
         }
         textarea {
           resize: vertical;
-          font-family: inherit;
           font-size: 1rem;
           padding: 8px;
           border-radius: 6px;
           border: 1px solid #ccc;
-          outline-offset: 2px;
           min-height: 60px;
-        }
-        textarea:focus {
-          border-color: #cc0000;
+          margin-bottom: 8px;
         }
         button {
-          margin-top: 8px;
           align-self: flex-end;
           background-color: #cc0000;
           color: white;
@@ -89,23 +98,42 @@ export default function Comments() {
           font-weight: 600;
           border-radius: 6px;
           cursor: pointer;
-          transition: background-color 0.3s ease;
         }
         button:disabled {
           background-color: #ddd;
           cursor: not-allowed;
-        }
-        button:hover:not(:disabled) {
-          background-color: #b30000;
         }
         ul {
           list-style: none;
           padding: 0;
         }
         li {
-          margin-bottom: 12px;
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          margin-bottom: 16px;
+        }
+        img {
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+        }
+        .comment-body {
+          background: #f8f8f8;
+          padding: 8px 12px;
+          border-radius: 8px;
+          flex: 1;
+        }
+        .comment-body strong {
           font-size: 0.95rem;
-          line-height: 1.3;
+        }
+        .comment-body .time {
+          font-size: 0.8rem;
+          color: gray;
+          margin-left: 8px;
+        }
+        .comment-body p {
+          margin: 4px 0 0;
         }
       `}</style>
     </section>

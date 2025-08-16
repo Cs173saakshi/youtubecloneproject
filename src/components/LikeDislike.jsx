@@ -1,17 +1,37 @@
 import React, { useState } from "react";
 
 export default function LikeDislike() {
+  const [likes, setLikes] = useState(120); 
+  const [dislikes, setDislikes] = useState(5); 
   const [liked, setLiked] = useState(false);
   const [disliked, setDisliked] = useState(false);
 
   const handleLike = () => {
-    setLiked(true);
-    setDisliked(false);
+    if (liked) {
+      setLiked(false);
+      setLikes(likes - 1);
+    } else {
+      setLiked(true);
+      setLikes(likes + 1);
+      if (disliked) {
+        setDisliked(false);
+        setDislikes(dislikes - 1);
+      }
+    }
   };
 
   const handleDislike = () => {
-    setDisliked(true);
-    setLiked(false);
+    if (disliked) {
+      setDisliked(false);
+      setDislikes(dislikes - 1);
+    } else {
+      setDisliked(true);
+      setDislikes(dislikes + 1);
+      if (liked) {
+        setLiked(false);
+        setLikes(likes - 1);
+      }
+    }
   };
 
   return (
@@ -19,36 +39,51 @@ export default function LikeDislike() {
       <button
         aria-pressed={liked}
         onClick={handleLike}
-        aria-label="Like video"
         className={liked ? "active" : ""}
       >
-        👍
+        <span className="emoji">👍</span>
+        <span className="count">{likes}</span>
       </button>
+
       <button
         aria-pressed={disliked}
         onClick={handleDislike}
-        aria-label="Dislike video"
         className={disliked ? "active" : ""}
       >
-        👎
+        <span className="emoji">👎</span>
+        <span className="count">{dislikes}</span>
       </button>
 
       <style jsx>{`
         .like-dislike {
           display: flex;
-          gap: 16px;
+          gap: 20px;
           margin-top: 16px;
+          align-items: center;
         }
         button {
-          font-size: 1.8rem;
+          font-size: 1.2rem;
           background: none;
           border: none;
           cursor: pointer;
-          transition: color 0.3s ease;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-weight: 600;
           color: #555;
+          transition: transform 0.2s ease;
         }
-        button.active {
-          color: #cc0000;
+        button:hover {
+          transform: scale(1.1);
+        }
+        .emoji {
+          transition: color 0.3s ease;
+        }
+        .count {
+          color: #000; /* keep numbers always visible */
+        }
+        button.active .emoji {
+          color: #cc0000; /* only emoji turns red */
         }
         button:focus {
           outline: 2px solid #cc0000;
