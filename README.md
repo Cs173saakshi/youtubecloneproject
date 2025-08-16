@@ -1,23 +1,25 @@
 # StreamSphere - YouTube Clone
 
-A frontend-only YouTube clone built with React and Vite, featuring video browsing, search, categories, and dark/light mode.
+StreamSphere is a frontend-only YouTube clone built with **React** and **Vite**. It replicates core YouTube features like browsing videos, searching, viewing video details, and exploring categories. The app includes dark/light mode support and is fully responsive across devices.
 
 ## Live Demo
-Check out the deployed project on Netlify: [StreamSphere Live](https://streamssphere.netlify.app/)
+Check out the deployed project on Netlify: [https://streamssphere.netlify.app/](https://streamssphere.netlify.app/)
 
 ## Features
-- Browse trending videos and categories.
-- Watch video details with player, description, likes, and comments.
-- Related videos displayed on the right side.
-- Search videos dynamically.
-- Dark/Light mode toggle.
+- Browse trending videos with thumbnails and details.
+- Watch video details with embedded player, description, likes/dislikes, and comments.
+- Related videos displayed on the right side of the page.
+- Dynamic search functionality for videos.
+- Category sidebar (Home, Trending, Music, Gaming, Technology).
+- Dark/Light mode toggle using Context API.
 - Responsive design for desktop, tablet, and mobile.
+- Smooth hover animations and page transitions.
 
-## Technologies
-- React, Vite, JavaScript, HTML, CSS
-- React Router for navigation
-- Context API for theme management
-- Bootstrap for responsive UI
+## Tech Stack
+- **Frontend:** React, JavaScript, HTML, CSS, Bootstrap
+- **Routing:** React Router
+- **State Management:** Context API
+- **Bundler:** Vite
 
 ## How to Run Locally
 1. Clone the repository:
